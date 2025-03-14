@@ -1,3 +1,8 @@
+<?php
+require_once "../src/funcoes-fabricantes.php";
+
+listarFabricantes($conexao);
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
