@@ -1,7 +1,9 @@
 <?php
 require_once "../src/funcoes-fabricantes.php";
 
-$listarFabricantes =listarFabricantes($conexao);
+$listaDeFabricantes =listarFabricantes($conexao);
+
+$quantidade = count($listaDeFabricantes)
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +27,7 @@ $listarFabricantes =listarFabricantes($conexao);
 
 
         <table class="table table-hover table-bordered w-50">
-            <caption>Lista de Fabricantes</caption>
+            <caption>Lista de Fabricantes: <?=$quantidade?></caption>
             <thead class="table-light">
                 <tr>
                     <th>ID</th>
