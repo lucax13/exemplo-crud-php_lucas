@@ -3,7 +3,7 @@ require_once "../src/funcoes-fabricantes.php";
 
 $listarFabricantes =listarFabricantes($conexao);
 ?>
-<pre><?=var_dump($listarFabricantes)?></pre>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -33,18 +33,12 @@ $listarFabricantes =listarFabricantes($conexao);
                 </tr>
             </thead>
             <tbody>
+<?php foreach($listarFabricantes as $fabricante){?>
                 <tr>
                     <td> Identificador do fabricante 1... </td>
                     <td> Nome do fabricante 1... </td>
                 </tr>
-                <tr>
-                    <td> Identificador do fabricante 2... </td>
-                    <td> Nome do fabricante 2... </td>
-                </tr>
-                <tr>
-                    <td> Identificador do fabricante 3... </td>
-                    <td> Nome do fabricante 3... </td>
-                </tr>
+<?php }?>
             </tbody>
         </table>
     </div>
