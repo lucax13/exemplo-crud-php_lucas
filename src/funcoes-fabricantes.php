@@ -7,7 +7,7 @@ require_once "conecta.php";
 function listarFabricantes(PDO $conexao)
 :array{
    $sql = "SELECT * FROM fabricantes ORDER BY nome";
-
+   try {
     /*preparando o comando sql antes de executar no servidor e guardando em memoria (variavel consultado ou query)*/
    $consulta = $conexao->prepare($sql);
 
@@ -16,4 +16,8 @@ function listarFabricantes(PDO $conexao)
 
    /*busca/retorna  todos os dadod provenientes da execução da consulta e os transforma em array associativo*/
    return $consulta->fetchall(PDO::FETCH_ASSOC);
-}
+
+   } catch (Exception $erro) {
+      die("Erro:".$erro->getMessage());
+   }
+}   
