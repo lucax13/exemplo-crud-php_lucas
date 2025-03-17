@@ -29,7 +29,7 @@ $fabricante = listarUmFabricante($conexao, $id);
         <form action="" method="post" class="w-25">
             <div class="mb-3">
                 <label for="nome" class="form-label">Nome:</label>
-                <input class="form-control" required type="text" name="nome" id="nome">
+                <input value="<?=$fabricante['nome']?>" class="form-control" required type="text" name="nome" id="nome">
             </div>
             <button class="btn btn-warning" type="submit" name="atualizar">
                 Atualizar fabricante</button>
