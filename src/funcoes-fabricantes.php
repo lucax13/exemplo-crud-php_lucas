@@ -40,3 +40,21 @@ function inserirFabricante(PDO $conexao, string $nomeDoFabricante):void   {
       die ("Erro ao inserir: ". $erro->getMessage());
    }
 }
+
+// listarUmFabricante: usada pela pagina fabricantes
+function listarUmFabricante(PDO $conexao, int $idfabricante):array {
+   $sql = "SELECT * FROM fabricantes WHERE id = :id";
+   
+   try{
+      $consulta = $conexao->prepare($sql);
+      $consulta->bindValue(":id", $idfabricante, PDO::PARAM_INT);
+      $consulta->execute();
+
+      /*usamos o fetch para garantir o retorno de um unicp array associativo com o resultado*/
+
+      return $consulta->fetch(PDO::FETCH_ASSOC);
+   }  catch (Exception $erro) {
+      die ("Erro ao  arregar fabricante:".$erro->getMessage());
+   }
+
+}

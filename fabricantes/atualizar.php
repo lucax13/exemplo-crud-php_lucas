@@ -9,6 +9,8 @@ $id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
 $fabricante = listarUmFabricante($conexao, $id);
 ?>
 
+<pre><?=var_dump($fabricante)?></pre>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
