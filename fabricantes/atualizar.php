@@ -7,9 +7,18 @@ $id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
 
 /*chamando a função para carregar os dados de um fabricante*/
 $fabricante = listarUmFabricante($conexao, $id);
+
+if(isset($_POST['atualizar'])){
+    $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
+
+    atualizarFabricante();
+
+    header("location:visualizar.php");
+    exit;
+}
 ?>
 
-<pre><?=var_dump($fabricante)?></pre>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
