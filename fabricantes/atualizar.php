@@ -11,7 +11,7 @@ $fabricante = listarUmFabricante($conexao, $id);
 if(isset($_POST['atualizar'])){
     $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
 
-    atualizarFabricante();
+    atualizarFabricante($conexao, $id, $nome);
 
     header("location:visualizar.php");
     exit;
