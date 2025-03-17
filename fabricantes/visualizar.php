@@ -35,7 +35,7 @@ $quantidade = count($listaDeFabricantes)
                 </tr>
             </thead>
             <tbody>
-<?php foreach($listarFabricantes as $fabricante){?>
+<?php foreach($listaDeFabricantes as $fabricante){?>
                 <tr>
                     <td> <?= $fabricante["id"] ?></td>
                     <td> <?= $fabricante["nome"] ?></td>
