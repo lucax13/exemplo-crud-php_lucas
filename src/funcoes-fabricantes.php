@@ -61,5 +61,5 @@ function listarUmFabricante(PDO $conexao, int $idfabricante):array {
 
 // atualizarFabricante
 function atualizarFabricante(PDO $conexao, $idFabricante, $nomeFabricante):void {
-   $sql = "UPDATE fabricantes SET nome WHERE id";
+   $sql = "UPDATE fabricantes SET nome WHERE :id";
 } 
