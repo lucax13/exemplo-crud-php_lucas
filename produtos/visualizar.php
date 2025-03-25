@@ -28,7 +28,7 @@ $listaDeProdutos = listarProdutos($conexao);
                 <div class="col-sm-6">
                     <article class="bg-body-secondary p-2">
                         <h3>Nome <?= $produto["nome"] ?></h3>
-                        <h4>fabricante <?= $produto["id"] ?></h4>
+                        <h4>fabricante <?= $produto["fabricante_id"] ?></h4>
                         <p><b>Preço: <?= $produto["preco"] ?> </b></p>
                         <p><b>quantidade: <?= $produto["quantidade"] ?> </b></p>
                     </article>
