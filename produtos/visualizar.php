@@ -22,6 +22,17 @@ $listaDeProdutos = listarProdutos($conexao);
 
         <p><a class="btn btn-primary btn-sm" href="inserir.php">Inserir novo produto</a></p>
 
+        <div class="row">
+            <div class="col-sm-6">
+                <article class="bg-body-secondary p-2">
+                    <h3>Nome do produto</h3>
+                    <h4>fabricante de produto</h4>
+                    <p><b>Preço: </b> do produto</p>
+                    <p><b>quantidade: </b> do produto</p>
+
+                </article>
+            </div>
+        </div>
 
     </div>
 
