@@ -1,6 +1,19 @@
 <?php
 require_once "../src/funcoes-fabricantes.php";
+require_once "../src/funcoes-produtos.php";
+
 $listaDeFabricantes = listarFabricantes($conexao);
+
+if(isset($_POST["inserir"])){
+    //capturar/sanitizar os dados
+
+
+    // chamar a função responsável por inserir o produto e passar os parametros
+
+
+    //redirecionar para visualização do produto
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

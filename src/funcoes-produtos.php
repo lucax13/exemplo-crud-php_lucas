@@ -3,9 +3,7 @@ require_once "conecta.php";
 
 function listarProdutos(PDO $conexao):array {
     //$sql = "SELECT * FROM produtos";
-    
-
-$sql = "SELECT 
+ $sql = "SELECT 
                produtos.id, produtos.nome AS produto, 
                produtos.preco, produtos.quantidade,
                fabricantes.nome AS fabricante,
@@ -23,10 +21,31 @@ $sql = "SELECT
         die("Erro ao carregar produtos: ".$erro->getMessage());
     }
 }
+   
+
 
 function inserirProduto(PDO $conexao, string $nome, 
-    float $preco, int $quantidade, int $idFabricante, 
+    float $preco, int $quantidade, int $fabricante_id, 
     string $descricao):void {
+        
+        $preco = filter_var($preco, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 
+        $sql = "INSERT INTO produtos(nome, preco, quantidade, fabricante_id, descricao) 
+            VALUES(:nome, :preco, :quantidade, :fabricante_id, :descricao)";
+
+        try{
+            $consulta = $conexao->prepare($sql);
+
+            $consulta->execute();
+
+            $consulta->bindValue(":nome", $nome, PDO::PARAM_STR );
+            $consulta->bindValue(":preco", $preco, PDO::PARAM_STR );            
+            $consulta->bindValue(":quantidade", $quantidade, PDO::PARAM_STR );
+            $consulta->bindValue(":descricao", $descricao, PDO::PARAM_STR );
+
+
+        }   catch (Exception $erro){
+            die("Erro ao inserir: ".$erro->getMessage());
+        } 
 
 }
