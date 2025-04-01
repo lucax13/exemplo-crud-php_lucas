@@ -5,13 +5,17 @@ require_once "../src/funcoes-produtos.php";
 $listaDeFabricantes = listarFabricantes($conexao);
 
 if(isset($_POST["inserir"])){
-    //capturar/sanitizar os dados
 
+    //capturar/sanitizar os dados
+    $preco = filter_var($preco, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 
     // chamar a função responsável por inserir o produto e passar os parametros
+    inserirProduto($conexao, $nome, $preco, $quantidade, $descricao, $frabricante_id);
 
 
     //redirecionar para visualização do produto
+    header("location:visualizar.php");
+    exit;
 }
 
 ?>
