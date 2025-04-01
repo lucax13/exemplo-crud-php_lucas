@@ -23,8 +23,6 @@ function listarProdutos(PDO $conexao): array
     }
 }
 
-
-
 function inserirProduto(
     PDO $conexao,
     string $nome,
@@ -46,10 +44,26 @@ function inserirProduto(
         $consulta->bindValue(":fabricante_id", $fabricanteID, PDO::PARAM_INT);
 
         $consulta->execute();
-
-
     } catch (Exception $erro) {
         die("Erro ao inserir produto: " . $erro->getMessage());
     }
 }
+ 
 
+
+function listarUmProduto(PDO $conexao, int $idProduto):array {
+    $sql = "SELECT * FROM produtos WHERE id = :id";
+    
+    try{
+       $consulta = $conexao->prepare($sql);
+       $consulta->bindValue(":id", $idProduto, PDO::PARAM_INT);
+       $consulta->execute();
+ 
+       /*usamos o fetch para garantir o retorno de um unicp array associativo com o resultado*/
+ 
+       return $consulta->fetch(PDO::FETCH_ASSOC);
+    }  catch (Exception $erro) {
+       die ("Erro ao  arregar produtos:".$erro->getMessage());
+    }
+ 
+ }
