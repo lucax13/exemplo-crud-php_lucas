@@ -30,12 +30,9 @@ function inserirProduto(
     string $nome,
     float $preco,
     int $quantidade,
-    int $fabricante_id,
+    int $fabricanteID,
     string $descricao
 ): void {
-
-
-
     $sql = "INSERT INTO produtos(nome, preco, quantidade, fabricante_id, descricao) 
             VALUES(:nome, :preco, :quantidade, :fabricante_id, :descricao)";
 
@@ -46,12 +43,13 @@ function inserirProduto(
         $consulta->bindValue(":preco", $preco, PDO::PARAM_STR);
         $consulta->bindValue(":quantidade", $quantidade, PDO::PARAM_INT);
         $consulta->bindValue(":descricao", $descricao, PDO::PARAM_STR);
-        $consulta->bindValue(":fabricante_id", $fabricante_id, PDO::PARAM_INT);
+        $consulta->bindValue(":fabricante_id", $fabricanteID, PDO::PARAM_INT);
 
         $consulta->execute();
 
 
     } catch (Exception $erro) {
-        die("Erro ao inserir: " . $erro->getMessage());
+        die("Erro ao inserir produto: " . $erro->getMessage());
     }
 }
+

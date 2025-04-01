@@ -1,3 +1,7 @@
+<?php 
+require_once "../src/funcoes-produtos.php";
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
