@@ -58,12 +58,11 @@ function listarUmProduto(PDO $conexao, int $idProduto):array {
        $consulta = $conexao->prepare($sql);
        $consulta->bindValue(":id", $idProduto, PDO::PARAM_INT);
        $consulta->execute();
- 
-       /*usamos o fetch para garantir o retorno de um unicp array associativo com o resultado*/
- 
-       return $consulta->fetch(PDO::FETCH_ASSOC);
+        return $consulta->fetch(PDO::FETCH_ASSOC);
+      
+       
     }  catch (Exception $erro) {
-       die ("Erro ao  arregar produtos:".$erro->getMessage());
+       die ("Erro ao carregar produtos:".$erro->getMessage());
     }
  
  }
