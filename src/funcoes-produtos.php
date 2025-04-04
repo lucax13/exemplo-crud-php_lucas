@@ -23,6 +23,8 @@ function listarProdutos(PDO $conexao): array
     }
 }
 
+// inserir produto
+
 function inserirProduto(
     PDO $conexao,
     string $nome,
@@ -48,21 +50,57 @@ function inserirProduto(
         die("Erro ao inserir produto: " . $erro->getMessage());
     }
 }
- 
 
+//lista produto
 
-function listarUmProduto(PDO $conexao, int $idProduto):array {
+function listarUmProduto(PDO $conexao, int $idProduto): array
+{
     $sql = "SELECT * FROM produtos WHERE id = :id";
-    
+
+    try {
+        $consulta = $conexao->prepare($sql);
+        $consulta->bindValue(":id", $idProduto, PDO::PARAM_INT);
+        $consulta->execute();
+        return $consulta->fetch(PDO::FETCH_ASSOC);
+    } catch (Exception $erro) {
+        die("Erro ao carregar produtos:" . $erro->getMessage());
+    }
+}
+
+//atualizar 
+
+function atualizarProduto(PDO $conexao, int $id,  string $nomeProduto, float $preco, int $quantidade, string $descricao, int $fabricanteID): void
+{
+    $sql = "UPDATE produtos SET nome = :nome, preco = :preco, quantidade = :quantidade, descricao = :descricao, fabricante_id = :fabricante_id WHERE id = :id";
+
+    try {
+
+        $consulta = $conexao->prepare($sql);
+
+        $consulta->bindValue(":id", $id, PDO::PARAM_INT);
+        $consulta->bindValue(":nome", $nomeProduto, PDO::PARAM_STR);
+        $consulta->bindValue(":preco", $preco, PDO::PARAM_STR);
+        $consulta->bindValue(":quantidade", $quantidade, PDO::PARAM_INT);
+        $consulta->bindValue(":descricao", $descricao, PDO::PARAM_STR);
+        $consulta->bindValue(":fabricante_id", $fabricanteID, PDO::PARAM_INT);
+        
+
+
+        $consulta->execute();
+    } catch (Exception $erro) {
+
+        die("Erro ao atualizar produto: " . $erro->getMessage());
+    }
+}
+
+// excluir produto
+function excluirProduto(PDO $conexao, int $id):void{
+    $sql = "DELETE FROM produtos WHERE id = :id";
     try{
        $consulta = $conexao->prepare($sql);
-       $consulta->bindValue(":id", $idProduto, PDO::PARAM_INT);
+       $consulta->bindValue(":id", $id, PDO::PARAM_INT);
        $consulta->execute();
-        return $consulta->fetch(PDO::FETCH_ASSOC);
-      
-       
-    }  catch (Exception $erro) {
-       die ("Erro ao carregar produtos:".$erro->getMessage());
+    } catch(Exception $erro ){
+       die("Erro ao excluir produto: ".$erro->getMessage());
     }
- 
  }

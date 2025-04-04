@@ -6,6 +6,21 @@ $listaDeFabricantes = listarFabricantes($conexao);
 $id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
 $produto = listarUmProduto($conexao, $id);
 
+if (isset($_POST['atualizar'])) {
+
+    $nomeProduto = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
+    $preco = filter_input(INPUT_POST, "preco", FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+    $quantidade = filter_input(INPUT_POST, "quantidade", FILTER_SANITIZE_NUMBER_INT);
+    $descricao = filter_input(INPUT_POST, "descricao", FILTER_SANITIZE_SPECIAL_CHARS);
+    $fabricanteID = filter_input(INPUT_POST, "fabricante", FILTER_SANITIZE_NUMBER_INT);
+      
+    atualizarProduto($conexao, $id,  $nomeProduto, $preco, $quantidade, $descricao, $fabricanteID);
+
+    
+    header("location: visualizar.php");
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>
